@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conciergerie Étoilée - Locations de vacances à Hyères</title>
+  <meta name="description" content="Découvrez nos locations de vacances haut de gamme à Hyères avec Conciergerie Étoilée. Réservez en ligne et profitez de services de conciergerie personnalisés pour un séjour inoubliable.">
+  <meta name="keywords" content="location de vacances Hyères, conciergerie de luxe, villas Hyères, appartements vue mer, gestion locative premium, services personnalisés, hébergements haut de gamme">
+  <meta property="og:title" content="Conciergerie Étoilée - Locations de vacances à Hyères">
+  <meta property="og:description" content="Des vacances de rêve à Hyères avec Conciergerie Étoilée. Profitez de villas de luxe et de services de conciergerie personnalisés.">
+  <meta property="og:image" content="https://source.unsplash.com/1600x900/?luxury,villa">
+  <meta property="og:url" content="https://www.conciergerie-etoilee.com">
+  <link rel="canonical" href="https://www.conciergerie-etoilee.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: url('https://source.unsplash.com/1600x900/?coastline,resort') no-repeat center center/cover;
+      color: white;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    header .overlay {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 40px;
+      border-radius: 10px;
+    }
+
+    header h1 {
+      font-size: 3.5em;
+      margin: 0 0 10px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 1.3em;
+      margin-bottom: 20px;
+    }
+
+    nav {
+      background-color: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      margin: 0;
+      padding: 10px 0;
+    }
+
+    nav li {
+      margin: 0 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #0077b6;
+    }
+
+    .btn-primary {
+      background-color: #0077b6;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #00a8e8;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      display: none;
+    }
+
+    .popup h2 {
+      color: #0077b6;
+      margin-bottom: 15px;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .overlay-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: none;
+    }
+
+    .content {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #0077b6;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.8;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="overlay-background" id="overlay"></div>
+  <div class="popup" id="promoPopup">
+    <button class="popup-close" onclick="closePopup()">&times;</button>
+    <h2>Offre Spéciale !</h2>
+    <p>Réservez maintenant et obtenez <strong>10% de réduction</strong> sur votre premier séjour.</p>
+    <button class="btn-primary" onclick="closePopup()">Réservez maintenant</button>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="#" onclick="showPage('home')">Accueil</a></li>
+      <li><a href="#" onclick="showPage('locations')">Locations & Conciergerie</a></li>
+      <li><a href="#" onclick="showPage('pricing')">Tarifs & Disponibilités</a></li>
+      <li><a href="#" onclick="showPage('gallery')">Galerie Photos</a></li>
+      <li><a href="#" onclick="showPage('about')">Qui sommes-nous ?</a></li>
+      <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <div class="overlay">
+      <h1>Conciergerie Étoilée</h1>
+      <p>Locations de vacances haut de gamme à Hyères</p>
+      <a href="#" onclick="showPage('pricing')" class="btn-primary">Voir les disponibilités</a>
+    </div>
+  </header>
+
+  <div class="content" id="home">
+    <h2>Nos biens en location</h2>
+    <p>Découvrez une sélection exclusive de <strong>villas contemporaines</strong>, <strong>appartements avec vue sur mer</strong>, et <strong>maisons de charme</strong> à Hyères. Profitez de notre <strong>service de conciergerie personnalisé</strong> pour un séjour inoubliable.</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Conciergerie Étoilée - Tous droits réservés</p>
+  </footer>
+
+  <script>
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.content');
+      pages.forEach(page => page.classList.add('hidden'));
+      document.getElementById(pageId).classList.remove('hidden');
+    }
+
+    function showPopup() {
+      document.getElementById('promoPopup').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
+    }
+
+    function closePopup() {
+      document.getElementById('promoPopup').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
+    }
+
+    window.onload = function() {
+      setTimeout(showPopup, 5000);
+    };
+  </script>
+</body>
+
+</html>
